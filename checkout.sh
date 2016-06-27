@@ -32,17 +32,19 @@ fi
 log "git status"
 git status
 
-read -p "These files will be wiped. Continue? > (yN)" choice
-if [ "$choice" != "y" ]; then
-  log "Chose no. Do nothing."
-  exit
+if [ -n "$(git status -s)" ]; then
+  read -p "These files will be wiped. Continue? > (yN)" choice
+  if [ "$choice" != "y" ]; then
+    log "Chose no. Do nothing."
+    exit
+  fi
+
+  log "git add ."
+  git add .
+
+  log "git commit -nm 'docto-wip'"
+  git commit -nm 'docto-wip'
 fi
-
-log "git add ."
-git add .
-
-log "git commit -nm 'docto-wip'"
-git commit -nm 'docto-wip'
 
 log "git checkout $1"
 git checkout $1
