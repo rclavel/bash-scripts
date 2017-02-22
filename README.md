@@ -20,8 +20,9 @@ It:
 
 Create configuration and alias in **~/.bashrc**:
 
-    export DEV_PATH=~/dev/my-dev-directory
-    alias checkout='bash ~/scripts/checkout.sh'
+    export DEV_ROOT_PATH=~/dev/my-dev-directory
+    export BASH_SCRIPTS_PATH=~/dev/bash-scripts
+    source "${BASH_SCRIPTS_PATH}/bash-scripts.sh"
 
 Reload bash configuration:
 

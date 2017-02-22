@@ -1,13 +1,15 @@
 if [ -z $1 ]; then
   echo "Usage: checkout branch-name [-f]"
   echo "Options:"
-  echo "   -f Git fetch"
-  exit
+  echo "   -f Perform a git-fetch before checkout branch-name"
+
+  return
 fi
 
-if [ -z "$DEV_PATH" ]; then
-  echo "Error: DEV_PATH env var is not set"
-  exit
+if [ -z "$DEV_ROOT_PATH" ]; then
+    echo "Error: DEV_ROOT_PATH env var is not set"
+
+    return
 fi
 
 PREFIX="\033[1m\033[34m"
@@ -17,7 +19,7 @@ function log {
   echo -e "$PREFIX+ $1$SUFFIX"
 }
 
-cd $DEV_PATH
+cd $DEV_ROOT_PATH
 
 if [ "$2" = "-f" ]; then
   log "git fetch"
@@ -35,8 +37,8 @@ git status
 if [ -n "$(git status -s)" ]; then
   read -p "These files will be wiped. Continue? > (yN)" choice
   if [ "$choice" != "y" ]; then
-    log "Chose no. Do nothing."
-    exit
+      log "Chose no. Do nothing."
+      return
   fi
 
   log "git add ."
