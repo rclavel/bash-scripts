@@ -44,8 +44,8 @@ if [ -n "$(git status -s)" ]; then
   log "git add ."
   git add .
 
-  log "git commit -nm 'docto-wip'"
-  git commit -nm 'docto-wip'
+  log "git commit -nm 'wip'"
+  git commit -nm 'wip'
 fi
 
 log "git checkout $1"
@@ -54,7 +54,7 @@ git checkout $1
 log "git pull --rebase"
 git pull --rebase
 
-if [ "$(git log -n 1 --pretty=format:%s)" = "docto-wip" ]
+if [ "$(git log -n 1 --pretty=format:%s)" = "wip" ]
 then
   log "git reset HEAD~1"
   git reset HEAD~1
