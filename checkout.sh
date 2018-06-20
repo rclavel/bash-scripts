@@ -68,3 +68,6 @@ bundle install > /tmp/bundle-install.log
 
 log "bundle exec rake db:migrate"
 bundle exec rake db:migrate
+
+log "RAILS_ENV=test bundle exec rake db:migrate"
+RAILS_ENV=test bundle exec rake db:migrate
